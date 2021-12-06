@@ -8,9 +8,9 @@ class BookmakersController < ApplicationController
     if @book.save
       redirect_to bookmaker_path(@book.id)
     else
-      render :new
+      redirect_to bookmakers_new_path
     end
-    
+
   end
 
   def index
@@ -32,7 +32,7 @@ class BookmakersController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to bookmaker_path
+    redirect_to bookmakers_path
   end
 
   private

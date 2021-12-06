@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get 'bookmakers/:id' => 'bookmakers#show', as: 'bookmaker'
   get 'bookmakers/:id/edit' => 'bookmakers#edit', as: 'edit_bookmaker'
   patch 'bookmakers/:id' => 'bookmakers#update', as: 'update_bookmaker'
-  delete 'bookmakers/:id' => 'bookmakerss#destroy', as: 'destroy_bookmaker'
+  delete 'bookmakers/:id' => 'bookmakers#destroy', as: 'destroy_bookmaker'
 end
