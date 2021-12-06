@@ -4,13 +4,18 @@ class BookmakersController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
-    book.save
-    redirect_to bookmaker_path(book.id)
+    @book = Book.new(book_params)
+    if @book.save
+      redirect_to bookmaker_path(@book.id)
+    else
+      render :new
+    end
+    
   end
 
   def index
     @books = Book.all
+    @books = Book.all.order(created_at: :desc)
   end
 
   def show
