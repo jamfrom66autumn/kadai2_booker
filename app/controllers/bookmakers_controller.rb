@@ -9,8 +9,10 @@ class BookmakersController < ApplicationController
       flash[:notice] = "SUCCESS"
       redirect_to bookmaker_path(@book.id)
     else
-      flash[:alert] = "ERROR"
-      redirect_to bookmakers_path
+      @books = Book.all
+      @books = Book.all.order(created_at: :desc)
+      # @book=Book.new
+      render :index
     end
   end
 
