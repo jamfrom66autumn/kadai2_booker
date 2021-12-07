@@ -22,18 +22,23 @@
 
 
 <h2><b>New book</b></h2>
-<% if @book && @book.errors.any? %>
-  <%= @book.errors.count %>error(s) occoured.
-  <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
+<div class= field_with_errors>
+    <% if @book && @book.errors.any? %>
+    <%= @book.errors.count %>error(s) occoured.
+    <% @book.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
 <%= form_with model: Book.new, url:'/bookmakers', local:true do |f| %>
+
   <h4>Title</h4>
   <%= f.text_field :title %>
+
   <h4>Body</h4>
   <%= f.text_area :body %>
+
   <%= f.submit 'Create Book' %>
 <% end %>
 
