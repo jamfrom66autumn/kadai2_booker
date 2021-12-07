@@ -6,14 +6,15 @@ class BookmakersController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to bookmaker_path(@book.id)
+      flash[:notice] = "SUCCESS"
+      redirect_to bookmaker_path
     else
-      redirect_to bookmakers_new_path
+      flash[:alert] = "ERROR"
+      redirect_to bookmakers_path
     end
-
   end
-
   def index
+
     @books = Book.all
     @books = Book.all.order(created_at: :desc)
   end
@@ -25,9 +26,12 @@ class BookmakersController < ApplicationController
     @book = Book.find(params[:id])
   end
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to bookmaker_path(book.id)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to edit_bookmaker_path
+    else
+      render 'bookmakers/edit'
+    end
   end
   def destroy
     book = Book.find(params[:id])
